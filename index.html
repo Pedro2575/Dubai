@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura em Dubai</title>
+    <style>
+        /* CSS interno */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        #scene {
+            margin-top: 20px;
+        }
+        #scene img {
+            width: 80%;
+            height: auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #scene p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .buttons button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Uma Aventura em Dubai</h1>
+        </header>
+
+        <div id="scene">
+            <img id="scene-image" src="https://adekuaengenharia.com.br/wp-content/uploads/2018/04/cayantower_1400x800_som06jpg-e1598230826410.jpg" alt="Dubai Início">
+            <p id="scene-text">Você está no centro de Dubai, cercado por arranha-céus e luxo. O que você faz?</p>
+        </div>
+
+        <div class="buttons">
+            <button onclick="chooseOption(1)">Explorar o deserto</button>
+            <button onclick="chooseOption(2)">Visitar o Burj Khalifa</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para mudar as cenas
+        function chooseOption(option) {
+            const sceneImage = document.getElementById('scene-image');
+            const sceneText = document.getElementById('scene-text');
+
+            if (option === 1) {
+                // Opção 1: Explorar o deserto
+                sceneImage.src = "https://imagenes.elpais.com/resizer/v2/5YKN35XJJVCA2ARP67QIQBLWMY.jpg?auth=85801764ea11cd3be1cfd45e5b540754e46ee7a300cf6b541f90fd7eddf8337a&width=1960&height=1103&smart=true";
+                sceneText.textContent = "Você decidiu explorar o deserto e se deparou com dunas infinitas. O calor é intenso. O que você faz?";
+                updateButtons("Procurar uma caravana", "Voltar para a cidade", 3, 4);
+            } else if (option === 2) {
+                // Opção 2: Visitar o Burj Khalifa
+                sceneImage.src = "https://media.tacdn.com/media/attractions-splice-spp-674x446/0d/51/9b/08.jpg";
+                sceneText.textContent = "Você está no topo do Burj Khalifa, a vista é impressionante! Você pode ver toda a cidade. O que você faz?";
+                updateButtons("Tirar uma foto", "Descer do prédio", 5, 6);
+            } else if (option === 3) {
+                // Opção 3: Procurar uma caravana
+                sceneImage.src = "https://recreio.com.br/media/_versions/legacy/2020/02/27/natureza-1220863_widexl.jpeg";
+                sceneText.textContent = "Você encontrou uma caravana no deserto que o leva a uma oásis. Fim da aventura!";
+                updateButtons("Recomeçar", "", 1, 0);
+            } else if (option === 4) {
+                // Opção 4: Voltar para a cidade
+                sceneImage.src = "https://s2-oglobo.glbimg.com/6Uv0LNzpPkkXSRIQfKgep8LKvoY=/0x0:960x538/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2024/V/9/wBf8V8S6WPU9gYBOFXDQ/62246631-10156036211076577-5106587596637601792-n.jpg";
+                sceneText.textContent = "Você voltou ao centro de Dubai. O que você faz agora?";
+                updateButtons("Explorar o deserto", "Visitar o Burj Khalifa", 1, 2);
+            } else if (option === 5) {
+                // Opção 5: Tirar uma foto
+                sceneImage.src = "https://www.kangaroo.com.br/images/dubai/vista-aerea-cidade-dubai-marina.jpg";
+                sceneText.textContent = "Você tirou uma foto incrível da vista de Dubai. Fim da aventura!";
+                updateButtons("Recomeçar", "", 1, 0);
+            } else if (option === 6) {
+                // Opção 6: Descer do prédio
+                sceneImage.src = "https://octane.rent/wp-content/uploads/2024/06/crowd_of_tourists_walking_at_the_square_near_the_entrance_to_dubai_mall_1000.jpg";
+                sceneText.textContent = "Você desceu do Burj Khalifa e voltou para o centro da cidade. O que você faz agora?";
+                updateButtons("Explorar o deserto", "Visitar o Burj Khalifa", 1, 2);
+            }
+        }
+
+        function updateButtons(text1, text2, option1, option2) {
+            const buttons = document.querySelectorAll('.buttons button');
+            buttons[0].textContent = text1;
+            buttons[0].setAttribute('onclick', `chooseOption(${option1})`);
+
+            if (text2) {
+                buttons[1].textContent = text2;
+                buttons[1].style.display = "inline-block";
+                buttons[1].setAttribute('onclick', `chooseOption(${option2})`);
+            } else {
+                buttons[1].style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
